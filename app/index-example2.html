@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" >
+<head>
+    <meta charset="utf-8">
+    <title>My AngularJS App</title>
+    <link rel="stylesheet" href="css/app.css"/>
+    <script src="lib/angular/angular.js"></script>
+    <script>
+        var myApp = angular.module('myApp',[]);
+
+        myApp.controller("MyController", function($scope){
+            $scope.name = "Michael Ball";
+        });
+        myApp.filter('blingify', function() {
+            return function(text) {
+                return '***'+text+'***';
+            }
+        });
+    </script>
+
+</head>
+<body ng-app="myApp" ng-controller="MyController">
+<h1>{{name|blingify}}</h1>
+{{name}}
+
+<input type="text" ng-model="name"/>
+
+
+</body>
+</html>

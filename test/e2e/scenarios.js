@@ -8,11 +8,9 @@ describe('my app', function() {
     browser().navigateTo('app/index.html');
   });
 
-
   it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
     expect(browser().location().url()).toBe("/view1");
   });
-
 
   describe('view1', function() {
 
@@ -20,12 +18,16 @@ describe('my app', function() {
       browser().navigateTo('#/view1');
     });
 
-
     it('should render view1 when user navigates to /view1', function() {
       expect(element('[ng-view] p:first').text()).
         toMatch(/partial for view 1/);
     });
 
+    it('should render my value on /view1', function() {
+      input('myVal').enter('Michael Ball');
+      expect(element('[ng-view] p:last').text()).
+        toMatch(/Michael Ball/);
+      });
   });
 
 
@@ -34,7 +36,6 @@ describe('my app', function() {
     beforeEach(function() {
       browser().navigateTo('#/view2');
     });
-
 
     it('should render view2 when user navigates to /view2', function() {
       expect(element('[ng-view] p:first').text()).
